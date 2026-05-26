@@ -23,10 +23,10 @@ jobs:
       - name: Show toolchain version
         run: moon version
 
+      - run: moon update
+
       - name: Check formatting
         run: moon fmt --check
-
-      - run: moon update
 
       - name: Typecheck
         run: moon check
