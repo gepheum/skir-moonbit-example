@@ -11,6 +11,7 @@
 // To install the Skir client library, run:
 //   moon add gepheum/skir-client
 
+///|
 pub struct User_Pet {
   name : String
   height_in_meters : Float
@@ -18,26 +19,23 @@ pub struct User_Pet {
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn User_Pet::new(
   name~ : String,
   height_in_meters~ : Float,
   picture~ : String,
 ) -> User_Pet {
-  {
-    name,
-    height_in_meters,
-    picture,
-    _unrecognized: None,
-  }
+  { name, height_in_meters, picture, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn User_Pet::copy(
   self : User_Pet,
-  name~ : @client.KeepOrSet[String]=@client.KeepOrSet::Keep,
-  height_in_meters~ : @client.KeepOrSet[Float]=@client.KeepOrSet::Keep,
-  picture~ : @client.KeepOrSet[String]=@client.KeepOrSet::Keep,
+  name? : @client.KeepOrSet[String] = @client.KeepOrSet::Keep,
+  height_in_meters? : @client.KeepOrSet[Float] = @client.KeepOrSet::Keep,
+  picture? : @client.KeepOrSet[String] = @client.KeepOrSet::Keep,
 ) -> User_Pet {
   {
     name: match name {
@@ -56,19 +54,18 @@ pub fn User_Pet::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn User_Pet::default() -> User_Pet {
-  User_Pet::new(
-    name="",
-    height_in_meters=0.0,
-    picture="",
-  )
+  User_Pet::new(name="", height_in_meters=0.0, picture="")
 }
 
+///|
 pub fn User_Pet::serializer() -> @client.Serializer[User_Pet] {
   user__pet__adapter.serializer()
 }
 
+///|
 priv struct User_Pet_mutable {
   mut name : String
   mut height_in_meters : Float
@@ -76,15 +73,12 @@ priv struct User_Pet_mutable {
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn user__pet__new_mutable() -> User_Pet_mutable {
-  {
-    name: "",
-    height_in_meters: 0.0,
-    picture: "",
-    _unrecognized: None,
-  }
+  { name: "", height_in_meters: 0.0, picture: "", _unrecognized: None }
 }
 
+///|
 fn user__pet__to_frozen(input : User_Pet_mutable) -> User_Pet {
   {
     name: input.name,
@@ -94,9 +88,17 @@ fn user__pet__to_frozen(input : User_Pet_mutable) -> User_Pet {
   }
 }
 
-let user__pet__adapter : @client.Internal_StructAdapter[User_Pet, User_Pet_mutable] = user__pet__adapter__init()
+///|
+let user__pet__adapter : @client.Internal_StructAdapter[
+  User_Pet,
+  User_Pet_mutable,
+] = user__pet__adapter__init()
 
-fn user__pet__adapter__init() -> @client.Internal_StructAdapter[User_Pet, User_Pet_mutable] {
+///|
+fn user__pet__adapter__init() -> @client.Internal_StructAdapter[
+  User_Pet,
+  User_Pet_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "user.skir:User.Pet",
     "",
@@ -113,9 +115,7 @@ fn user__pet__adapter__init() -> @client.Internal_StructAdapter[User_Pet, User_P
     0,
     @client.string_serializer(),
     fn(input : User_Pet) { input.name },
-    fn(input : User_Pet_mutable, value : String) {
-      input.name = value
-    },
+    fn(input : User_Pet_mutable, value : String) { input.name = value },
     "",
   )
   adapter.add_field(
@@ -133,15 +133,14 @@ fn user__pet__adapter__init() -> @client.Internal_StructAdapter[User_Pet, User_P
     2,
     @client.string_serializer(),
     fn(input : User_Pet) { input.picture },
-    fn(input : User_Pet_mutable, value : String) {
-      input.picture = value
-    },
+    fn(input : User_Pet_mutable, value : String) { input.picture = value },
     "",
   )
   adapter.finalize()
   adapter
 }
 
+///|
 pub struct User {
   user_id : Int
   name : String
@@ -152,6 +151,7 @@ pub struct User {
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn User::new(
   user_id~ : Int,
   name~ : String,
@@ -159,25 +159,19 @@ pub fn User::new(
   pets~ : @client.ImmutVector[User_Pet],
   subscription_status~ : SubscriptionStatus,
 ) -> User {
-  {
-    user_id,
-    name,
-    quote,
-    pets,
-    subscription_status,
-    _unrecognized: None,
-  }
+  { user_id, name, quote, pets, subscription_status, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn User::copy(
   self : User,
-  user_id~ : @client.KeepOrSet[Int]=@client.KeepOrSet::Keep,
-  name~ : @client.KeepOrSet[String]=@client.KeepOrSet::Keep,
-  quote~ : @client.KeepOrSet[String]=@client.KeepOrSet::Keep,
-  pets~ : @client.KeepOrSet[@client.ImmutVector[User_Pet]]=@client.KeepOrSet::Keep,
-  subscription_status~ : @client.KeepOrSet[SubscriptionStatus]=@client.KeepOrSet::Keep,
+  user_id? : @client.KeepOrSet[Int] = @client.KeepOrSet::Keep,
+  name? : @client.KeepOrSet[String] = @client.KeepOrSet::Keep,
+  quote? : @client.KeepOrSet[String] = @client.KeepOrSet::Keep,
+  pets? : @client.KeepOrSet[@client.ImmutVector[User_Pet]] = @client.KeepOrSet::Keep,
+  subscription_status? : @client.KeepOrSet[SubscriptionStatus] = @client.KeepOrSet::Keep,
 ) -> User {
   {
     user_id: match user_id {
@@ -204,6 +198,7 @@ pub fn User::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn User::default() -> User {
   User::new(
@@ -215,10 +210,12 @@ pub fn User::default() -> User {
   )
 }
 
+///|
 pub fn User::serializer() -> @client.Serializer[User] {
   user__adapter.serializer()
 }
 
+///|
 priv struct User_mutable {
   mut user_id : Int
   mut name : String
@@ -228,6 +225,7 @@ priv struct User_mutable {
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn user__new_mutable() -> User_mutable {
   {
     user_id: 0,
@@ -239,6 +237,7 @@ fn user__new_mutable() -> User_mutable {
   }
 }
 
+///|
 fn user__to_frozen(input : User_mutable) -> User {
   {
     user_id: input.user_id,
@@ -250,8 +249,10 @@ fn user__to_frozen(input : User_mutable) -> User {
   }
 }
 
+///|
 let user__adapter : @client.Internal_StructAdapter[User, User_mutable] = user__adapter__init()
 
+///|
 fn user__adapter__init() -> @client.Internal_StructAdapter[User, User_mutable] {
   let adapter = @client.Internal_StructAdapter::new(
     "user.skir:User",
@@ -269,9 +270,7 @@ fn user__adapter__init() -> @client.Internal_StructAdapter[User, User_mutable] {
     0,
     @client.int32_serializer(),
     fn(input : User) { input.user_id },
-    fn(input : User_mutable, value : Int) {
-      input.user_id = value
-    },
+    fn(input : User_mutable, value : Int) { input.user_id = value },
     "",
   )
   adapter.add_field(
@@ -279,9 +278,7 @@ fn user__adapter__init() -> @client.Internal_StructAdapter[User, User_mutable] {
     1,
     @client.string_serializer(),
     fn(input : User) { input.name },
-    fn(input : User_mutable, value : String) {
-      input.name = value
-    },
+    fn(input : User_mutable, value : String) { input.name = value },
     "",
   )
   adapter.add_field(
@@ -289,9 +286,7 @@ fn user__adapter__init() -> @client.Internal_StructAdapter[User, User_mutable] {
     2,
     @client.string_serializer(),
     fn(input : User) { input.quote },
-    fn(input : User_mutable, value : String) {
-      input.quote = value
-    },
+    fn(input : User_mutable, value : String) { input.quote = value },
     "A personal quote or motto chosen by the user",
   )
   adapter.add_field(
@@ -318,59 +313,74 @@ fn user__adapter__init() -> @client.Internal_StructAdapter[User, User_mutable] {
   adapter
 }
 
+///|
 let _User_byUserId__spec : @client.Internal_KeyedVectorSpec[User, Int] = {
   get_key: fn(item : User) { item.user_id },
   key_extractor: "user_id",
   default_item: User::default(),
 }
 
+///|
 pub struct User_byUserId {
   priv vector : @client.Internal_KeyedVector[User, Int]
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn User_byUserId::vector(self : User_byUserId) -> @client.ImmutVector[User] {
   self.vector.vector
 }
 
+///|
 pub fn User_byUserId::new(vector : @client.ImmutVector[User]) -> User_byUserId {
   { vector: @client.Internal_KeyedVector::new(vector, _User_byUserId__spec) }
 }
 
+///|
 pub fn User_byUserId::from_array(items : Array[User]) -> User_byUserId {
-  { vector: @client.Internal_KeyedVector::from_array(items, _User_byUserId__spec) }
+  {
+    vector: @client.Internal_KeyedVector::from_array(
+      items, _User_byUserId__spec,
+    ),
+  }
 }
 
+///|
 pub fn User_byUserId::empty() -> User_byUserId {
   { vector: @client.Internal_KeyedVector::empty(_User_byUserId__spec) }
 }
 
+///|
 pub fn User_byUserId::find_by_user_id(self : User_byUserId, key : Int) -> User? {
   self.vector.find_by_key(key)
 }
 
-pub fn User_byUserId::find_by_user_id_or_default(self : User_byUserId, key : Int) -> User {
+///|
+pub fn User_byUserId::find_by_user_id_or_default(
+  self : User_byUserId,
+  key : Int,
+) -> User {
   self.vector.find_by_key_or_default(key)
 }
 
+///|
 pub struct SubscriptionStatus_Trial {
   start_time : @client.Timestamp
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn SubscriptionStatus_Trial::new(
   start_time~ : @client.Timestamp,
 ) -> SubscriptionStatus_Trial {
-  {
-    start_time,
-    _unrecognized: None,
-  }
+  { start_time, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn SubscriptionStatus_Trial::copy(
   self : SubscriptionStatus_Trial,
-  start_time~ : @client.KeepOrSet[@client.Timestamp]=@client.KeepOrSet::Keep,
+  start_time? : @client.KeepOrSet[@client.Timestamp] = @client.KeepOrSet::Keep,
 ) -> SubscriptionStatus_Trial {
   {
     start_time: match start_time {
@@ -381,47 +391,61 @@ pub fn SubscriptionStatus_Trial::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn SubscriptionStatus_Trial::default() -> SubscriptionStatus_Trial {
-  SubscriptionStatus_Trial::new(
-    start_time=@client.Timestamp::unix_epoch(),
-  )
+  SubscriptionStatus_Trial::new(start_time=@client.Timestamp::unix_epoch())
 }
 
-pub fn SubscriptionStatus_Trial::serializer() -> @client.Serializer[SubscriptionStatus_Trial] {
+///|
+pub fn SubscriptionStatus_Trial::serializer() -> @client.Serializer[
+  SubscriptionStatus_Trial,
+] {
   subscription_status__trial__adapter.serializer()
 }
 
+///|
 priv struct SubscriptionStatus_Trial_mutable {
   mut start_time : @client.Timestamp
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn subscription_status__trial__new_mutable() -> SubscriptionStatus_Trial_mutable {
-  {
-    start_time: @client.Timestamp::unix_epoch(),
-    _unrecognized: None,
-  }
+  { start_time: @client.Timestamp::unix_epoch(), _unrecognized: None }
 }
 
-fn subscription_status__trial__to_frozen(input : SubscriptionStatus_Trial_mutable) -> SubscriptionStatus_Trial {
-  {
-    start_time: input.start_time,
-    _unrecognized: input._unrecognized,
-  }
+///|
+fn subscription_status__trial__to_frozen(
+  input : SubscriptionStatus_Trial_mutable,
+) -> SubscriptionStatus_Trial {
+  { start_time: input.start_time, _unrecognized: input._unrecognized }
 }
 
-let subscription_status__trial__adapter : @client.Internal_StructAdapter[SubscriptionStatus_Trial, SubscriptionStatus_Trial_mutable] = subscription_status__trial__adapter__init()
+///|
+let subscription_status__trial__adapter : @client.Internal_StructAdapter[
+  SubscriptionStatus_Trial,
+  SubscriptionStatus_Trial_mutable,
+] = subscription_status__trial__adapter__init()
 
-fn subscription_status__trial__adapter__init() -> @client.Internal_StructAdapter[SubscriptionStatus_Trial, SubscriptionStatus_Trial_mutable] {
+///|
+fn subscription_status__trial__adapter__init() -> @client.Internal_StructAdapter[
+  SubscriptionStatus_Trial,
+  SubscriptionStatus_Trial_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "user.skir:SubscriptionStatus.Trial",
     "",
     "",
     fn() { subscription_status__trial__new_mutable() },
-    fn(input : SubscriptionStatus_Trial_mutable) { subscription_status__trial__to_frozen(input) },
+    fn(input : SubscriptionStatus_Trial_mutable) {
+      subscription_status__trial__to_frozen(input)
+    },
     fn(input : SubscriptionStatus_Trial) { input._unrecognized },
-    fn(input : SubscriptionStatus_Trial_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : SubscriptionStatus_Trial_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -439,6 +463,7 @@ fn subscription_status__trial__adapter__init() -> @client.Internal_StructAdapter
   adapter
 }
 
+///|
 pub enum SubscriptionStatus {
   Unknown(@client.Internal_UnrecognizedVariant?)
   Free
@@ -446,25 +471,37 @@ pub enum SubscriptionStatus {
   Premium
 } derive(@builtin.Eq, @debug.Debug)
 
-let subscription_status__unknown : SubscriptionStatus = SubscriptionStatus::Unknown(None)
+///|
+let subscription_status__unknown : SubscriptionStatus = SubscriptionStatus::Unknown(
+  None,
+)
 
+///|
 pub fn SubscriptionStatus::unknown() -> SubscriptionStatus {
   subscription_status__unknown
 }
 
+///|
 pub fn SubscriptionStatus::free() -> SubscriptionStatus {
   SubscriptionStatus::Free
 }
 
-pub fn SubscriptionStatus::trial(value : SubscriptionStatus_Trial) -> SubscriptionStatus {
+///|
+pub fn SubscriptionStatus::trial(
+  value : SubscriptionStatus_Trial,
+) -> SubscriptionStatus {
   SubscriptionStatus::Trial(value)
 }
 
+///|
 pub fn SubscriptionStatus::premium() -> SubscriptionStatus {
   SubscriptionStatus::Premium
 }
 
-fn subscription_status__adapter__init() -> @client.Internal_EnumAdapter[SubscriptionStatus] {
+///|
+fn subscription_status__adapter__init() -> @client.Internal_EnumAdapter[
+  SubscriptionStatus,
+] {
   let adapter = @client.Internal_EnumAdapter::new(
     "user.skir:SubscriptionStatus",
     "",
@@ -478,7 +515,9 @@ fn subscription_status__adapter__init() -> @client.Internal_EnumAdapter[Subscrip
         SubscriptionStatus::Premium => 3
       }
     },
-    fn(value : @client.Internal_UnrecognizedVariant) { SubscriptionStatus::Unknown(Some(value)) },
+    fn(value : @client.Internal_UnrecognizedVariant) {
+      SubscriptionStatus::Unknown(Some(value))
+    },
     fn(input : SubscriptionStatus) {
       match input {
         SubscriptionStatus::Unknown(value) => value
@@ -487,41 +526,60 @@ fn subscription_status__adapter__init() -> @client.Internal_EnumAdapter[Subscrip
     },
   )
   adapter.add_constant_variant("free", 1, 1, "", SubscriptionStatus::Free)
-  adapter.add_wrapper_variant("trial", 2, 2, SubscriptionStatus_Trial::serializer(), "", fn(value : SubscriptionStatus_Trial) { SubscriptionStatus::Trial(value) }, fn(input : SubscriptionStatus) { if input is SubscriptionStatus::Trial(value) { value } else { SubscriptionStatus_Trial::default() } })
+  adapter.add_wrapper_variant(
+    "trial",
+    2,
+    2,
+    SubscriptionStatus_Trial::serializer(),
+    "",
+    fn(value : SubscriptionStatus_Trial) { SubscriptionStatus::Trial(value) },
+    fn(input : SubscriptionStatus) {
+      if input is SubscriptionStatus::Trial(value) {
+        value
+      } else {
+        SubscriptionStatus_Trial::default()
+      }
+    },
+  )
   adapter.add_constant_variant("premium", 3, 3, "", SubscriptionStatus::Premium)
   adapter.finalize()
   adapter
 }
 
-let subscription_status__adapter : @client.Internal_EnumAdapter[SubscriptionStatus] = subscription_status__adapter__init()
+///|
+let subscription_status__adapter : @client.Internal_EnumAdapter[
+  SubscriptionStatus,
+] = subscription_status__adapter__init()
 
-pub fn SubscriptionStatus::serializer() -> @client.Serializer[SubscriptionStatus] {
+///|
+pub fn SubscriptionStatus::serializer() -> @client.Serializer[
+  SubscriptionStatus,
+] {
   subscription_status__adapter.serializer()
 }
 
+///|
 pub struct UserHistory_Session {
   login : @client.Timestamp
   logout : @client.Timestamp
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn UserHistory_Session::new(
   login~ : @client.Timestamp,
   logout~ : @client.Timestamp,
 ) -> UserHistory_Session {
-  {
-    login,
-    logout,
-    _unrecognized: None,
-  }
+  { login, logout, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn UserHistory_Session::copy(
   self : UserHistory_Session,
-  login~ : @client.KeepOrSet[@client.Timestamp]=@client.KeepOrSet::Keep,
-  logout~ : @client.KeepOrSet[@client.Timestamp]=@client.KeepOrSet::Keep,
+  login? : @client.KeepOrSet[@client.Timestamp] = @client.KeepOrSet::Keep,
+  logout? : @client.KeepOrSet[@client.Timestamp] = @client.KeepOrSet::Keep,
 ) -> UserHistory_Session {
   {
     login: match login {
@@ -536,6 +594,7 @@ pub fn UserHistory_Session::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn UserHistory_Session::default() -> UserHistory_Session {
   UserHistory_Session::new(
@@ -544,16 +603,21 @@ pub fn UserHistory_Session::default() -> UserHistory_Session {
   )
 }
 
-pub fn UserHistory_Session::serializer() -> @client.Serializer[UserHistory_Session] {
+///|
+pub fn UserHistory_Session::serializer() -> @client.Serializer[
+  UserHistory_Session,
+] {
   user_history__session__adapter.serializer()
 }
 
+///|
 priv struct UserHistory_Session_mutable {
   mut login : @client.Timestamp
   mut logout : @client.Timestamp
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn user_history__session__new_mutable() -> UserHistory_Session_mutable {
   {
     login: @client.Timestamp::unix_epoch(),
@@ -562,7 +626,10 @@ fn user_history__session__new_mutable() -> UserHistory_Session_mutable {
   }
 }
 
-fn user_history__session__to_frozen(input : UserHistory_Session_mutable) -> UserHistory_Session {
+///|
+fn user_history__session__to_frozen(
+  input : UserHistory_Session_mutable,
+) -> UserHistory_Session {
   {
     login: input.login,
     logout: input.logout,
@@ -570,17 +637,30 @@ fn user_history__session__to_frozen(input : UserHistory_Session_mutable) -> User
   }
 }
 
-let user_history__session__adapter : @client.Internal_StructAdapter[UserHistory_Session, UserHistory_Session_mutable] = user_history__session__adapter__init()
+///|
+let user_history__session__adapter : @client.Internal_StructAdapter[
+  UserHistory_Session,
+  UserHistory_Session_mutable,
+] = user_history__session__adapter__init()
 
-fn user_history__session__adapter__init() -> @client.Internal_StructAdapter[UserHistory_Session, UserHistory_Session_mutable] {
+///|
+fn user_history__session__adapter__init() -> @client.Internal_StructAdapter[
+  UserHistory_Session,
+  UserHistory_Session_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "user.skir:UserHistory.Session",
     "",
     "",
     fn() { user_history__session__new_mutable() },
-    fn(input : UserHistory_Session_mutable) { user_history__session__to_frozen(input) },
+    fn(input : UserHistory_Session_mutable) {
+      user_history__session__to_frozen(input)
+    },
     fn(input : UserHistory_Session) { input._unrecognized },
-    fn(input : UserHistory_Session_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : UserHistory_Session_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -608,29 +688,28 @@ fn user_history__session__adapter__init() -> @client.Internal_StructAdapter[User
   adapter
 }
 
+///|
 pub struct UserHistory {
   user : User
   sessions : @client.ImmutVector[UserHistory_Session]
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn UserHistory::new(
   user~ : User,
   sessions~ : @client.ImmutVector[UserHistory_Session],
 ) -> UserHistory {
-  {
-    user,
-    sessions,
-    _unrecognized: None,
-  }
+  { user, sessions, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn UserHistory::copy(
   self : UserHistory,
-  user~ : @client.KeepOrSet[User]=@client.KeepOrSet::Keep,
-  sessions~ : @client.KeepOrSet[@client.ImmutVector[UserHistory_Session]]=@client.KeepOrSet::Keep,
+  user? : @client.KeepOrSet[User] = @client.KeepOrSet::Keep,
+  sessions? : @client.KeepOrSet[@client.ImmutVector[UserHistory_Session]] = @client.KeepOrSet::Keep,
 ) -> UserHistory {
   {
     user: match user {
@@ -645,24 +724,25 @@ pub fn UserHistory::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn UserHistory::default() -> UserHistory {
-  UserHistory::new(
-    user=User::default(),
-    sessions=@client.ImmutVector::new(),
-  )
+  UserHistory::new(user=User::default(), sessions=@client.ImmutVector::new())
 }
 
+///|
 pub fn UserHistory::serializer() -> @client.Serializer[UserHistory] {
   user_history__adapter.serializer()
 }
 
+///|
 priv struct UserHistory_mutable {
   mut user : User
   mut sessions : @client.ImmutVector[UserHistory_Session]
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn user_history__new_mutable() -> UserHistory_mutable {
   {
     user: User::default(),
@@ -671,6 +751,7 @@ fn user_history__new_mutable() -> UserHistory_mutable {
   }
 }
 
+///|
 fn user_history__to_frozen(input : UserHistory_mutable) -> UserHistory {
   {
     user: input.user,
@@ -679,9 +760,17 @@ fn user_history__to_frozen(input : UserHistory_mutable) -> UserHistory {
   }
 }
 
-let user_history__adapter : @client.Internal_StructAdapter[UserHistory, UserHistory_mutable] = user_history__adapter__init()
+///|
+let user_history__adapter : @client.Internal_StructAdapter[
+  UserHistory,
+  UserHistory_mutable,
+] = user_history__adapter__init()
 
-fn user_history__adapter__init() -> @client.Internal_StructAdapter[UserHistory, UserHistory_mutable] {
+///|
+fn user_history__adapter__init() -> @client.Internal_StructAdapter[
+  UserHistory,
+  UserHistory_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "user.skir:UserHistory",
     "",
@@ -689,7 +778,10 @@ fn user_history__adapter__init() -> @client.Internal_StructAdapter[UserHistory, 
     fn() { user_history__new_mutable() },
     fn(input : UserHistory_mutable) { user_history__to_frozen(input) },
     fn(input : UserHistory) { input._unrecognized },
-    fn(input : UserHistory_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : UserHistory_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -698,9 +790,7 @@ fn user_history__adapter__init() -> @client.Internal_StructAdapter[UserHistory, 
     0,
     User::serializer(),
     fn(input : UserHistory) { input.user },
-    fn(input : UserHistory_mutable, value : User) {
-      input.user = value
-    },
+    fn(input : UserHistory_mutable, value : User) { input.user = value },
     "",
   )
   adapter.add_field(
@@ -708,7 +798,10 @@ fn user_history__adapter__init() -> @client.Internal_StructAdapter[UserHistory, 
     1,
     @client.vector_serializer(UserHistory_Session::serializer()),
     fn(input : UserHistory) { input.sessions },
-    fn(input : UserHistory_mutable, value : @client.ImmutVector[UserHistory_Session]) {
+    fn(
+      input : UserHistory_mutable,
+      value : @client.ImmutVector[UserHistory_Session],
+    ) {
       input.sessions = value
     },
     "",
@@ -717,25 +810,23 @@ fn user_history__adapter__init() -> @client.Internal_StructAdapter[UserHistory, 
   adapter
 }
 
+///|
 pub struct UserRegistry {
   users : User_byUserId
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
-pub fn UserRegistry::new(
-  users~ : User_byUserId,
-) -> UserRegistry {
-  {
-    users,
-    _unrecognized: None,
-  }
+///|
+pub fn UserRegistry::new(users~ : User_byUserId) -> UserRegistry {
+  { users, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn UserRegistry::copy(
   self : UserRegistry,
-  users~ : @client.KeepOrSet[User_byUserId]=@client.KeepOrSet::Keep,
+  users? : @client.KeepOrSet[User_byUserId] = @client.KeepOrSet::Keep,
 ) -> UserRegistry {
   {
     users: match users {
@@ -746,39 +837,44 @@ pub fn UserRegistry::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn UserRegistry::default() -> UserRegistry {
-  UserRegistry::new(
-    users=User_byUserId::empty(),
-  )
+  UserRegistry::new(users=User_byUserId::empty())
 }
 
+///|
 pub fn UserRegistry::serializer() -> @client.Serializer[UserRegistry] {
   user_registry__adapter.serializer()
 }
 
+///|
 priv struct UserRegistry_mutable {
   mut users : User_byUserId
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn user_registry__new_mutable() -> UserRegistry_mutable {
-  {
-    users: User_byUserId::empty(),
-    _unrecognized: None,
-  }
+  { users: User_byUserId::empty(), _unrecognized: None }
 }
 
+///|
 fn user_registry__to_frozen(input : UserRegistry_mutable) -> UserRegistry {
-  {
-    users: input.users,
-    _unrecognized: input._unrecognized,
-  }
+  { users: input.users, _unrecognized: input._unrecognized }
 }
 
-let user_registry__adapter : @client.Internal_StructAdapter[UserRegistry, UserRegistry_mutable] = user_registry__adapter__init()
+///|
+let user_registry__adapter : @client.Internal_StructAdapter[
+  UserRegistry,
+  UserRegistry_mutable,
+] = user_registry__adapter__init()
 
-fn user_registry__adapter__init() -> @client.Internal_StructAdapter[UserRegistry, UserRegistry_mutable] {
+///|
+fn user_registry__adapter__init() -> @client.Internal_StructAdapter[
+  UserRegistry,
+  UserRegistry_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "user.skir:UserRegistry",
     "",
@@ -786,7 +882,10 @@ fn user_registry__adapter__init() -> @client.Internal_StructAdapter[UserRegistry
     fn() { user_registry__new_mutable() },
     fn(input : UserRegistry_mutable) { user_registry__to_frozen(input) },
     fn(input : UserRegistry) { input._unrecognized },
-    fn(input : UserRegistry_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : UserRegistry_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -804,10 +903,12 @@ fn user_registry__adapter__init() -> @client.Internal_StructAdapter[UserRegistry
   adapter
 }
 
+///|
 /// King of the jungle
-pub let tarzan_const : User =
-  match User::serializer().from_json_code("[123,\"Tarzan\",\"AAAAaAaAaAyAAAAaAaAaAyAAAAaAaAaA\",[[\"Cheeta\",1.67,\"🐒\"]],[2,[1743592409000]]]") {
-    Ok(value) => value
-    Err(_) => panic()
-  }
-
+pub let tarzan_const : User = match
+  User::serializer().from_json_code(
+    "[123,\"Tarzan\",\"AAAAaAaAaAyAAAAaAaAaAyAAAAaAaAaA\",[[\"Cheeta\",1.67,\"🐒\"]],[2,[1743592409000]]]",
+  ) {
+  Ok(value) => value
+  Err(_) => panic()
+}

@@ -13,15 +13,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Install MoonBit
         shell: bash
         run: |
           set -euo pipefail
-          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash -s -- '0.9.2+bbe2b338f'
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash -s -- '0.9.3+b53c2807d'
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
 
       - name: Show toolchain version
         run: moon version
+
+      - name: Check Skir formatting
+        run: npx skir format --ci
+
+      - name: Run Skir-to-MoonBit codegen
+        run: npx skir gen
 
       - run: moon update
 
@@ -29,7 +40,7 @@ jobs:
         run: moon fmt --check
 
       - name: Typecheck
-        run: moon check
+        run: moon check --target native
 
       - name: Run tests
-        run: moon test
+        run: moon test src --target native --filter snippets

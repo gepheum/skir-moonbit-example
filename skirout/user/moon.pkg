@@ -1,5 +1,5 @@
 import {
   "gepheum/skir-client" @client,
-  "moonbitlang/core/builtin" @builtin,
-  "moonbitlang/core/debug" @debug,
+  "moonbitlang/core/builtin",
+  "moonbitlang/core/debug",
 }

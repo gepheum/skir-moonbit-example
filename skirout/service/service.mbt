@@ -11,25 +11,23 @@
 // To install the Skir client library, run:
 //   moon add gepheum/skir-client
 
+///|
 pub struct GetUserRequest {
   user_id : Int
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
-pub fn GetUserRequest::new(
-  user_id~ : Int,
-) -> GetUserRequest {
-  {
-    user_id,
-    _unrecognized: None,
-  }
+///|
+pub fn GetUserRequest::new(user_id~ : Int) -> GetUserRequest {
+  { user_id, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn GetUserRequest::copy(
   self : GetUserRequest,
-  user_id~ : @client.KeepOrSet[Int]=@client.KeepOrSet::Keep,
+  user_id? : @client.KeepOrSet[Int] = @client.KeepOrSet::Keep,
 ) -> GetUserRequest {
   {
     user_id: match user_id {
@@ -40,39 +38,46 @@ pub fn GetUserRequest::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn GetUserRequest::default() -> GetUserRequest {
-  GetUserRequest::new(
-    user_id=0,
-  )
+  GetUserRequest::new(user_id=0)
 }
 
+///|
 pub fn GetUserRequest::serializer() -> @client.Serializer[GetUserRequest] {
   get_user_request__adapter.serializer()
 }
 
+///|
 priv struct GetUserRequest_mutable {
   mut user_id : Int
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn get_user_request__new_mutable() -> GetUserRequest_mutable {
-  {
-    user_id: 0,
-    _unrecognized: None,
-  }
+  { user_id: 0, _unrecognized: None }
 }
 
-fn get_user_request__to_frozen(input : GetUserRequest_mutable) -> GetUserRequest {
-  {
-    user_id: input.user_id,
-    _unrecognized: input._unrecognized,
-  }
+///|
+fn get_user_request__to_frozen(
+  input : GetUserRequest_mutable,
+) -> GetUserRequest {
+  { user_id: input.user_id, _unrecognized: input._unrecognized }
 }
 
-let get_user_request__adapter : @client.Internal_StructAdapter[GetUserRequest, GetUserRequest_mutable] = get_user_request__adapter__init()
+///|
+let get_user_request__adapter : @client.Internal_StructAdapter[
+  GetUserRequest,
+  GetUserRequest_mutable,
+] = get_user_request__adapter__init()
 
-fn get_user_request__adapter__init() -> @client.Internal_StructAdapter[GetUserRequest, GetUserRequest_mutable] {
+///|
+fn get_user_request__adapter__init() -> @client.Internal_StructAdapter[
+  GetUserRequest,
+  GetUserRequest_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "service.skir:GetUserRequest",
     "",
@@ -80,7 +85,10 @@ fn get_user_request__adapter__init() -> @client.Internal_StructAdapter[GetUserRe
     fn() { get_user_request__new_mutable() },
     fn(input : GetUserRequest_mutable) { get_user_request__to_frozen(input) },
     fn(input : GetUserRequest) { input._unrecognized },
-    fn(input : GetUserRequest_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : GetUserRequest_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -89,34 +97,32 @@ fn get_user_request__adapter__init() -> @client.Internal_StructAdapter[GetUserRe
     0,
     @client.int32_serializer(),
     fn(input : GetUserRequest) { input.user_id },
-    fn(input : GetUserRequest_mutable, value : Int) {
-      input.user_id = value
-    },
+    fn(input : GetUserRequest_mutable, value : Int) { input.user_id = value },
     "",
   )
   adapter.finalize()
   adapter
 }
 
+///|
 pub struct GetUserResponse {
   user : @skirout_user_skir.User?
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn GetUserResponse::new(
   user~ : @skirout_user_skir.User?,
 ) -> GetUserResponse {
-  {
-    user,
-    _unrecognized: None,
-  }
+  { user, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn GetUserResponse::copy(
   self : GetUserResponse,
-  user~ : @client.KeepOrSet[@skirout_user_skir.User?]=@client.KeepOrSet::Keep,
+  user? : @client.KeepOrSet[@skirout_user_skir.User?] = @client.KeepOrSet::Keep,
 ) -> GetUserResponse {
   {
     user: match user {
@@ -127,39 +133,46 @@ pub fn GetUserResponse::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn GetUserResponse::default() -> GetUserResponse {
-  GetUserResponse::new(
-    user=None,
-  )
+  GetUserResponse::new(user=None)
 }
 
+///|
 pub fn GetUserResponse::serializer() -> @client.Serializer[GetUserResponse] {
   get_user_response__adapter.serializer()
 }
 
+///|
 priv struct GetUserResponse_mutable {
   mut user : @skirout_user_skir.User?
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn get_user_response__new_mutable() -> GetUserResponse_mutable {
-  {
-    user: None,
-    _unrecognized: None,
-  }
+  { user: None, _unrecognized: None }
 }
 
-fn get_user_response__to_frozen(input : GetUserResponse_mutable) -> GetUserResponse {
-  {
-    user: input.user,
-    _unrecognized: input._unrecognized,
-  }
+///|
+fn get_user_response__to_frozen(
+  input : GetUserResponse_mutable,
+) -> GetUserResponse {
+  { user: input.user, _unrecognized: input._unrecognized }
 }
 
-let get_user_response__adapter : @client.Internal_StructAdapter[GetUserResponse, GetUserResponse_mutable] = get_user_response__adapter__init()
+///|
+let get_user_response__adapter : @client.Internal_StructAdapter[
+  GetUserResponse,
+  GetUserResponse_mutable,
+] = get_user_response__adapter__init()
 
-fn get_user_response__adapter__init() -> @client.Internal_StructAdapter[GetUserResponse, GetUserResponse_mutable] {
+///|
+fn get_user_response__adapter__init() -> @client.Internal_StructAdapter[
+  GetUserResponse,
+  GetUserResponse_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "service.skir:GetUserResponse",
     "",
@@ -167,7 +180,10 @@ fn get_user_response__adapter__init() -> @client.Internal_StructAdapter[GetUserR
     fn() { get_user_response__new_mutable() },
     fn(input : GetUserResponse_mutable) { get_user_response__to_frozen(input) },
     fn(input : GetUserResponse) { input._unrecognized },
-    fn(input : GetUserResponse_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : GetUserResponse_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -185,25 +201,23 @@ fn get_user_response__adapter__init() -> @client.Internal_StructAdapter[GetUserR
   adapter
 }
 
+///|
 pub struct AddUserRequest {
   user : @skirout_user_skir.User
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
-pub fn AddUserRequest::new(
-  user~ : @skirout_user_skir.User,
-) -> AddUserRequest {
-  {
-    user,
-    _unrecognized: None,
-  }
+///|
+pub fn AddUserRequest::new(user~ : @skirout_user_skir.User) -> AddUserRequest {
+  { user, _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
 pub fn AddUserRequest::copy(
   self : AddUserRequest,
-  user~ : @client.KeepOrSet[@skirout_user_skir.User]=@client.KeepOrSet::Keep,
+  user? : @client.KeepOrSet[@skirout_user_skir.User] = @client.KeepOrSet::Keep,
 ) -> AddUserRequest {
   {
     user: match user {
@@ -214,39 +228,46 @@ pub fn AddUserRequest::copy(
   }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn AddUserRequest::default() -> AddUserRequest {
-  AddUserRequest::new(
-    user=@skirout_user_skir.User::default(),
-  )
+  AddUserRequest::new(user=@skirout_user_skir.User::default())
 }
 
+///|
 pub fn AddUserRequest::serializer() -> @client.Serializer[AddUserRequest] {
   add_user_request__adapter.serializer()
 }
 
+///|
 priv struct AddUserRequest_mutable {
   mut user : @skirout_user_skir.User
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn add_user_request__new_mutable() -> AddUserRequest_mutable {
-  {
-    user: @skirout_user_skir.User::default(),
-    _unrecognized: None,
-  }
+  { user: @skirout_user_skir.User::default(), _unrecognized: None }
 }
 
-fn add_user_request__to_frozen(input : AddUserRequest_mutable) -> AddUserRequest {
-  {
-    user: input.user,
-    _unrecognized: input._unrecognized,
-  }
+///|
+fn add_user_request__to_frozen(
+  input : AddUserRequest_mutable,
+) -> AddUserRequest {
+  { user: input.user, _unrecognized: input._unrecognized }
 }
 
-let add_user_request__adapter : @client.Internal_StructAdapter[AddUserRequest, AddUserRequest_mutable] = add_user_request__adapter__init()
+///|
+let add_user_request__adapter : @client.Internal_StructAdapter[
+  AddUserRequest,
+  AddUserRequest_mutable,
+] = add_user_request__adapter__init()
 
-fn add_user_request__adapter__init() -> @client.Internal_StructAdapter[AddUserRequest, AddUserRequest_mutable] {
+///|
+fn add_user_request__adapter__init() -> @client.Internal_StructAdapter[
+  AddUserRequest,
+  AddUserRequest_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "service.skir:AddUserRequest",
     "",
@@ -254,7 +275,10 @@ fn add_user_request__adapter__init() -> @client.Internal_StructAdapter[AddUserRe
     fn() { add_user_request__new_mutable() },
     fn(input : AddUserRequest_mutable) { add_user_request__to_frozen(input) },
     fn(input : AddUserRequest) { input._unrecognized },
-    fn(input : AddUserRequest_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : AddUserRequest_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -272,54 +296,62 @@ fn add_user_request__adapter__init() -> @client.Internal_StructAdapter[AddUserRe
   adapter
 }
 
+///|
 pub struct AddUserResponse {
   priv _unrecognized : @client.Internal_UnrecognizedFields?
 } derive(@builtin.Eq, @debug.Debug)
 
+///|
 pub fn AddUserResponse::new() -> AddUserResponse {
-  {
-    _unrecognized: None,
-  }
+  { _unrecognized: None }
 }
 
+///|
 /// Returns a copy with selected fields replaced.
 /// Fields not explicitly set keep their previous values.
-pub fn AddUserResponse::copy(
-  self : AddUserResponse,
-) -> AddUserResponse {
-  {
-    _unrecognized: self._unrecognized,
-  }
+pub fn AddUserResponse::copy(self : AddUserResponse) -> AddUserResponse {
+  { _unrecognized: self._unrecognized }
 }
 
+///|
 /// An instance with all fields set to their default values.
 pub fn AddUserResponse::default() -> AddUserResponse {
   AddUserResponse::new()
 }
 
+///|
 pub fn AddUserResponse::serializer() -> @client.Serializer[AddUserResponse] {
   add_user_response__adapter.serializer()
 }
 
+///|
 priv struct AddUserResponse_mutable {
   mut _unrecognized : @client.Internal_UnrecognizedFields?
 }
 
+///|
 fn add_user_response__new_mutable() -> AddUserResponse_mutable {
-  {
-    _unrecognized: None,
-  }
+  { _unrecognized: None }
 }
 
-fn add_user_response__to_frozen(input : AddUserResponse_mutable) -> AddUserResponse {
-  {
-    _unrecognized: input._unrecognized,
-  }
+///|
+fn add_user_response__to_frozen(
+  input : AddUserResponse_mutable,
+) -> AddUserResponse {
+  { _unrecognized: input._unrecognized }
 }
 
-let add_user_response__adapter : @client.Internal_StructAdapter[AddUserResponse, AddUserResponse_mutable] = add_user_response__adapter__init()
+///|
+let add_user_response__adapter : @client.Internal_StructAdapter[
+  AddUserResponse,
+  AddUserResponse_mutable,
+] = add_user_response__adapter__init()
 
-fn add_user_response__adapter__init() -> @client.Internal_StructAdapter[AddUserResponse, AddUserResponse_mutable] {
+///|
+fn add_user_response__adapter__init() -> @client.Internal_StructAdapter[
+  AddUserResponse,
+  AddUserResponse_mutable,
+] {
   let adapter = @client.Internal_StructAdapter::new(
     "service.skir:AddUserResponse",
     "",
@@ -327,7 +359,10 @@ fn add_user_response__adapter__init() -> @client.Internal_StructAdapter[AddUserR
     fn() { add_user_response__new_mutable() },
     fn(input : AddUserResponse_mutable) { add_user_response__to_frozen(input) },
     fn(input : AddUserResponse) { input._unrecognized },
-    fn(input : AddUserResponse_mutable, value : @client.Internal_UnrecognizedFields?) {
+    fn(
+      input : AddUserResponse_mutable,
+      value : @client.Internal_UnrecognizedFields?,
+    ) {
       input._unrecognized = value
     },
   )
@@ -335,6 +370,7 @@ fn add_user_response__adapter__init() -> @client.Internal_StructAdapter[AddUserR
   adapter
 }
 
+///|
 /// Returns the user with the given user_id, or an absent value if no such user
 /// exists.
 pub let get_user_method : @client.Method[GetUserRequest, GetUserResponse] = {
@@ -345,6 +381,7 @@ pub let get_user_method : @client.Method[GetUserRequest, GetUserResponse] = {
   doc: "Returns the user with the given user_id, or an absent value if no such user\nexists.",
 }
 
+///|
 /// Adds a new user to the registry.
 pub let add_user_method : @client.Method[AddUserRequest, AddUserResponse] = {
   name: "AddUser",
@@ -353,4 +390,3 @@ pub let add_user_method : @client.Method[AddUserRequest, AddUserResponse] = {
   response_serializer: AddUserResponse::serializer(),
   doc: "Adds a new user to the registry.",
 }
-
