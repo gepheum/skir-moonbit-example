@@ -1,0 +1,4 @@
+members = [
+  ".",
+  "deps/skir-client-async",
+]

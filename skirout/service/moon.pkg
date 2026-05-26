@@ -1,0 +1,6 @@
+import {
+  "gepheum/skir-client" @client,
+  "moonbitlang/core/builtin" @builtin,
+  "moonbitlang/core/debug" @debug,
+  "skir/e2e-tests/skirout/user" @skirout_user_skir,
+}
