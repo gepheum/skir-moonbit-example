@@ -26,16 +26,16 @@ jobs:
       - name: Show toolchain version
         run: moon version
 
+      - run: moon update
+
+      - name: Check formatting
+        run: moon fmt --check
+
       - name: Check Skir formatting
         run: npx skir format --ci
 
       - name: Run Skir-to-MoonBit codegen
         run: npx skir gen
-
-      - run: moon update
-
-      - name: Check formatting
-        run: moon fmt --check
 
       - name: Typecheck
         run: moon check --target native
