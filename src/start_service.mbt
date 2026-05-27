@@ -4,15 +4,15 @@ async fn main {
   let users = @hashmap.HashMap([])
 
   let get_user = @client_async.MethodEntry::new(
-    @skirout_service_skir.get_user_method,
+    @skirout_service.get_user_method,
     (req, _meta) => {
       let user = users.get(req.user_id)
-      Ok(@skirout_service_skir.GetUserResponse::new(user~))
+      Ok(@skirout_service.GetUserResponse::new(user~))
     },
   )
 
   let add_user = @client_async.MethodEntry::new(
-    @skirout_service_skir.add_user_method,
+    @skirout_service.add_user_method,
     (req, _meta) => {
       if req.user.user_id == 0 {
         Err(
@@ -23,7 +23,7 @@ async fn main {
         )
       } else {
         users.set(req.user.user_id, req.user)
-        Ok(@skirout_service_skir.AddUserResponse::new())
+        Ok(@skirout_service.AddUserResponse::new())
       }
     },
   )

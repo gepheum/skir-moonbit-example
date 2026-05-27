@@ -6,8 +6,8 @@ import {
   "moonbitlang/async/socket",
   "gepheum/skir-client" @client,
   "gepheum/skir-client-async" @client_async,
-  "skir/e2e-tests/skirout/service" @skirout_service_skir,
-  "skir/e2e-tests/skirout/user" @skirout_user_skir,
+  "skir/e2e-tests/skirout/service" @skirout_service,
+  "skir/e2e-tests/skirout/user" @skirout_user,
 }
 
 supported_targets = "+native"
